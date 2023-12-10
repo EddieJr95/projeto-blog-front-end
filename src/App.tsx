@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import { Navbar } from './components/navbar/navbar';
 import { Card } from './components/card/card';
 import { PostData } from './interface/PostData';
 import { usePostData } from './hooks/usePostData';
@@ -9,12 +10,12 @@ function App() {
   const { data } = usePostData();
   const [isModalOpen, SetIsModalOpen] = useState(false);
   const handleOpenModal = () => {
-    SetIsModalOpen(prev => !prev)
-  }
+    SetIsModalOpen(prev => !prev);
+  };
 
   return (
     <div className="container">
-      <h1>Blog</h1>
+      <Navbar></Navbar>
       <div className="card-grid">
         {data?.map(postData => (
           <Card
@@ -25,7 +26,7 @@ function App() {
           />
         ))}
       </div>
-      {isModalOpen && <CreateModal closeModal={handleOpenModal}/>}
+      {isModalOpen && <CreateModal closeModal={handleOpenModal} />}
       <button onClick={handleOpenModal}>New Post</button>
     </div>
   );
